@@ -7,7 +7,7 @@ function displayGifInfo() {
     var gif = $(this).attr("data-name");
     var queryURL = "https://www.omdbapi.com/?t=" + gif + "&apikey=trilogy";
 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?" + gif + "api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=zHaASV4aVVF4j94mdrYaqKKNZFQbTsQh";
 
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
