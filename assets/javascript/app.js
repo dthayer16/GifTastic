@@ -5,7 +5,6 @@ var animals = ["dog", "cat", "fish", "lion"];
 function displayGifInfo() {
 
     var gif = $(this).attr("data-name");
-    var queryURL = "https://www.omdbapi.com/?t=" + gif + "&apikey=trilogy";
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=zHaASV4aVVF4j94mdrYaqKKNZFQbTsQh";
 
@@ -14,49 +13,17 @@ function displayGifInfo() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
-
-        // //  Creating a div to hold the movie
-        //  var gifDiv = $("<div class='gif'>");
-
-        //  // Storing the rating data
-        //  var rating = response; 
-
-        //  // Creating an element to have the rating displayed
-        //  var pOne = $("<p>").text("Rating: " + );
-
-        //  // Displaying the rating
-        //  gifDiv.append(pOne);
-
-        //  // Storing the release year
-        //  var released = response.Released;
-
-        //  // Creating an element to hold the release year
-        //  var pTwo = $("<p>").text("Released: " + );
-
-        //  // Displaying the release year
-        //  gifDiv.append(pTwo);
-
-        //  // Storing the plot
-        //  var plot = response. ;
-
-        //  // Creating an element to hold the plot
-        //  var pThree = $("<p>").text("Plot: " + );
-
-        //  // Appending the plot
-        //  gifDiv.append(pThree);
-
-        //  // Retrieving the URL for the image
-        //  var imgURL = response.;
-
-        //  // Creating an element to hold the image
-        //  var image = $("<img>").attr("src", imgURL);
-
-        //  // Appending the image
-        //  gifDiv.append(image);
-
-        //  // Putting the entire movie above the previous movies
-        //  $("#gif-view").prepend(gifDiv);
+        console.log(response.data[1].url);
+        //  Creating a div to hold the movie
+        var gifDiv = $("<div class='gif'>");
+        // Retrieving the URL for the image
+        var imgURL = response.data[1].url;
+        // Creating an element to hold the image
+        var image = $("<img>").attr("src", imgURL);
+        // Appending the image
+        gifDiv.append(image);
+        // Putting the entire movie above the previous movies
+        $("#gif-view").append(gifDiv);
     });
 
 };
