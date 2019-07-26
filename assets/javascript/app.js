@@ -13,17 +13,20 @@ function displayGifInfo() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(response.data[1].url);
+        console.log(response.data[1]);
         //  Creating a div to hold the Gif
-        var gifDiv = $("<div class='gif'>");
-        // Retrieving the URL for the Gif
-        var imgURL = response.data[1].url;
-        // Creating an element to hold the Gif
-        var image = $("<img>").attr("src", imgURL);
-        // Appending the Gif
-        gifDiv.append(image);
-        // Putting the entire Gif above the previous Gifs
-        $("#gif-view").append(gifDiv);
+        const gifs = response.data;
+        gifs.forEach(function(gif){
+            var gifDiv = $("<div class='gif col-md-3'>");
+            // Retrieving the URL for the Gif
+            var imgURL = gif.images.original.url;
+            // Creating an element to hold the Gif
+            var image = $("<img class='img-fluid'>").attr("src", imgURL);
+            // Appending the Gif
+            gifDiv.append(image);
+            // Putting the entire Gif above the previous Gifs
+            $("#gif-view").append(gifDiv);
+        })
     });
 
 };
@@ -57,10 +60,8 @@ $("#add-gif").on("click", function (event) {
     event.preventDefault();
     // This line grabs the input from the textbox
     var gif = $("#gif-input").val().trim();
-
     // Adding gif from the textbox to our array
     animals.push(gif);
-
     // Calling renderButtons which handles the processing of our gif array
     renderButtons();
 });
