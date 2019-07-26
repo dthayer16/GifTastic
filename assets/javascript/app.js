@@ -4,6 +4,8 @@ var animals = ["dog", "cat", "fish", "lion"];
 // displayMovieInfo function re-renders the HTML to display the appropriate content
 function displayGifInfo() {
 
+    $("#gif-view").empty();
+
     var gif = $(this).attr("data-name");
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=zHaASV4aVVF4j94mdrYaqKKNZFQbTsQh";
@@ -21,11 +23,11 @@ function displayGifInfo() {
             // Retrieving the URL for the Gif
             var imgURL = gif.images.original.url;
             // Creating an element to hold the Gif
-            var image = $("<img class='img-fluid'>").attr("src", imgURL);
+            var image = $("<img class='img-fluid img-thumbnail'>").attr("src", imgURL);
             // Appending the Gif
             gifDiv.append(image);
             // Putting the entire Gif above the previous Gifs
-            $("#gif-view").append(gifDiv);
+            $("#gif-view").prepend(gifDiv);
         })
     });
 
