@@ -20,16 +20,16 @@ function displayGifInfo() {
         const gifs = response.data;
         gifs.forEach(function(gif){
             var gifDiv = $("<div class='gif col-md-3'>");
-            // Retrieving the URL for the Gif
-            var image = $("<img class='img-fluid img-thumbnail'>");           
             // Creating an element to hold the Gif
+            var image = $("<img class='img-fluid img-thumbnail'>");           
+            // Retrieving the URL for the Gif
             image.attr("src", gifs[gif].images.original_still.url);
             // add data state attribute to toggle between animate and still
-            image.attr("data-state", "still");
+            gifDiv.attr("data-state", "still");
             // add data still attribute with still URL
-            image.attr("data-still", gifs[gif].images.original_still.url);
+            gifDiv.attr("data-still", gifs[gif].images.original_still.url);
             // add data animate attribute with animate URL
-            image.attr("data-animate", gifs[gif].images.original.url);
+            gifDiv.attr("data-animate", gifs[gif].images.original.url);
             // Appending the Gif
             gifDiv.append(image);
             // Putting the entire Gif above the previous Gifs
